@@ -1,0 +1,38 @@
+package br.org.com.generation.blogpessoal.controller;
+
+
+import java.util.List;
+
+// CAMADA CONTROLE RESPONSAVEL PELA COMUNICAÇÃO COM O CLIENTE, (POSTIMAN, REACT ETC)
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.org.com.generation.blogpessoal.model.Postagem;
+import br.org.com.generation.blogpessoal.repository.PostagemRepository;
+
+@RestController // informa para o spring que essa classe trata-se de um controller
+@RequestMapping ("/postagens") // passamos a URI para quando for vir alguma requisisão nopostagem sera consumida essa classe
+@CrossOrigin(origins = "*", allowedHeaders ="*") // receber do front-end seria o endeço do front
+public class PostagemController {
+	
+	//injeção de dependencia
+	
+	@Autowired  // deixando toda responsabilidade de instanciação para o spring, garantido todos os serviços seja acessado a partit do controller
+	private PostagemRepository postagemRepository;   //chamando a interface e dando um nome para ela
+		//através da interface vc transfere a responsabilidade para o spring e trabalha com os métodos
+	
+	@GetMapping // sempre que vir uma requisição externa de alguém que consuma a API se método for do tipo GET ele vai disparar esse método
+	public ResponseEntity <List<Postagem>> getAll(){  //criando metodo  ResponseEntity representar a resposta HTTP inteira
+		
+		return ResponseEntity.ok(postagemRepository.findAll());  // .ok séria a responsta HTTP, após isso é feito um select * from tb_postagem mesma coisa
+		
+	}
+		
+		
+	
+}

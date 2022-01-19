@@ -1,0 +1,5 @@
+package com.generation.helloword.controller;
+
+public class HelloController {
+
+}
