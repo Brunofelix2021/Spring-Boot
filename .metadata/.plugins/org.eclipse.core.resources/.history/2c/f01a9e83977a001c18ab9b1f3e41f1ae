@@ -1,0 +1,12 @@
+package br.org.com.generation.blogpessoal.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity // declarando entidade
+@Table(name = "tb_tema") // criando table
+
+public class Tema {
+
+	
+}
