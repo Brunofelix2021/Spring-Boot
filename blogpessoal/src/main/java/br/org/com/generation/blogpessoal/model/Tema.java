@@ -21,15 +21,14 @@ public class Tema {
 	@Id // primary key
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id; // atributo ID
-	
+
 	@NotBlank(message = "O tributo Descrição é obrigatório e não pode conter espaços em branco.")
 	private String descricao;
-	
-	@OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)  // JOIN
+
+	@OneToMany(mappedBy = "tema", cascade = CascadeType.ALL) // JOIN
 	@JsonIgnoreProperties("tema") // Colocar essa propriedade para não entrar no looping
-	
 	private List<Postagem> postagem;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -54,5 +53,4 @@ public class Tema {
 		this.postagem = postagem;
 	}
 
-	
 }
